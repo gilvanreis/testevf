@@ -15,7 +15,7 @@ public class BaseCore {
     public static void setUp() {
         System.setProperty("webdriver.gecko.driver", "C:\\WebDrivers\\geckodriver.exe");
         driver = new FirefoxDriver();
-        driver.get("https://vfcli.varejofacil.com");
+        driver.get("https://www.meu-imc.com");
     }
 
 }
