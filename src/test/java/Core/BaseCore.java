@@ -17,5 +17,9 @@ public class BaseCore {
         driver = new FirefoxDriver();
         driver.get("https://www.meu-imc.com");
     }
+    @AfterClass
+     public void fechaTela(){
+        driver.quit();
+    }
 
 }
