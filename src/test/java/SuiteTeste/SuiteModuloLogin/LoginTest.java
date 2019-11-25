@@ -1,4 +1,4 @@
-package SuiteTeste;
+package SuiteTeste.SuiteModuloLogin;
 
 import Core.BaseCore;
 import org.junit.Assert;
@@ -16,6 +16,13 @@ public class LoginTest extends BaseCore{
         driver.findElement(By.id("senhaTela")).sendKeys("admin");
         driver.findElement(By.id("logar")).click();
         Assert.assertTrue(driver.getCurrentUrl().contains("index"));
+    }
+
+    @Test
+    public void encodingTelaInicial(){
+        String str = driver.findElement(By.xpath("/head/meta/charset")).getText();
+        System.out.println(str);
+        Assert.assertEquals("",str);
     }
 
 }
