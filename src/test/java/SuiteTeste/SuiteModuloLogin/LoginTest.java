@@ -11,7 +11,8 @@ import org.openqa.selenium.By;
 
 public class LoginTest extends BaseCore{
     @Test
-    public void LoginTest(){
+    public void telaInicial_LoginValido_DeveriaLogarComSucesso(){
+        //edicaoDocumentoDeCliente_DocumentoValido_DeveEditarComSucesso()
         driver.findElement(By.id("loginTela")).sendKeys("admin");
         driver.findElement(By.id("senhaTela")).sendKeys("admin");
         driver.findElement(By.id("logar")).click();
@@ -19,7 +20,7 @@ public class LoginTest extends BaseCore{
     }
 
     @Test
-    public void encodingTelaInicial(){
+    public void encodeDaTelaInicialTest(){
         String str = driver.findElement(By.xpath("/head/meta/charset")).getText();
         System.out.println(str);
         Assert.assertEquals("",str);
