@@ -8,7 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 /**
  * Created by Gilvan Reis on 22/11/2019.
  */
-public class BaseCore {
+public class BaseLoginTest {
     protected static WebDriver driver;
 
     @BeforeClass
