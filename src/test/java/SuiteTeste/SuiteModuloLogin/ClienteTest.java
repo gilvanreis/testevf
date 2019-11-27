@@ -11,12 +11,18 @@ import org.openqa.selenium.By;
 public class ClienteTest extends BaseLoginTest {
     @Test
     public void PesquisaCliente_DeveriaClicarEmPesquisarSucesso() {
-        driver.findElement(By.id("loginTela")).sendKeys("admin");
-        driver.findElement(By.id("senhaTela")).sendKeys("admin");
-        driver.findElement(By.id("logar")).click();
         driver.get("https://vfcli.varejofacil.com/cliente/cadastro?clearCache=true");
         driver.findElement(By.id("botaoPesquisar")).click();
         Assert.assertTrue(true);
 
     }
+    @Test
+    public void PesquisaCliente_ComDocumentoCpfValido_DeveriaPesquisarSucesso() {
+        driver.get("https://vfcli.varejofacil.com/cliente/cadastro?clearCache=true");
+        driver.findElement(By.id("cpfCnpjPassaporte")).sendKeys("29245890880");
+        driver.findElement(By.id("botaoPesquisar")).click();
+        Assert.assertTrue(true);
+
+    }
+
 }

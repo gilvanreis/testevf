@@ -1,26 +1,18 @@
 package Core;
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
- * Created by Gilvan Reis on 22/11/2019.
+ * Created by Gilvan Reis on 27/11/2019.
  */
-public class BaseLoginTest {
+public class BaseTest {
     protected static WebDriver driver;
-
     @BeforeClass
-    public static void setUpLogin() {
+    public static void setUp() {
         System.setProperty("webdriver.gecko.driver", "C:\\WebDrivers\\geckodriver.exe");
         driver = new FirefoxDriver();
         driver.get("https://vfcli.varejofacil.com/");
-        driver.findElement(By.id("loginTela")).sendKeys("admin");
-        driver.findElement(By.id("senhaTela")).sendKeys("admin");
-        driver.findElement(By.id("logar")).click();
-
     }
 }
-
