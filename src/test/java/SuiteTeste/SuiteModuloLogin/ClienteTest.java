@@ -7,7 +7,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by Gilvan Reis on 26/11/2019.
@@ -32,21 +34,25 @@ public class ClienteTest extends BaseLoginTest {
         js.executeScript(closeDropdownScript, campo);
     }
     @Test
-    public void IncluirCliente_ComDocumentoCpfValido_DeveriaIncluirSucesso() {
+    public void IncluirCliente_ComDocumentoCpfValido_DeveriaIncluirSucesso() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
         driver.get("https://vfcli.varejofacil.com/cliente/cadastro?clearCache=true");
         driver.findElement(By.linkText("Incluir")).click();
         selectItemFromList("tipoPessoa","Física");
         driver.findElement(By.id("cpfCnpjPassaporte")).click();
-        driver.findElement(By.id("cpfCnpjPassaporte")).sendKeys(Keys.HOME + "00666811385");
-        driver.findElement(By.id("cpfCnpjPassaporte")).sendKeys(Keys.ENTER);
+        driver.findElement(By.id("cpfCnpjPassaporte")).sendKeys(Keys.HOME + "10613683358" + Keys.TAB);
+        wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.className("ajaxLoadingStatusWithImage"))));
+        driver.findElement(By.id("nome")).sendKeys("FICTICIO NAME");
         selectItemFromList("holding","GERAL");
-        driver.findElement(By.id("nome")).clear();
-        driver.findElement(By.id("nome")).click();
-        driver.findElement(By.id("nome")).sendKeys(Keys.HOME + "GILVAN REIS");
+        driver.findElement(By.id("cep")).sendKeys(Keys.HOME + "60811110" + Keys.TAB);
+        driver.findElement(By.id("numero")).sendKeys(Keys.HOME + "800");
+        wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.className("ajaxLoadingStatusWithImage"))));
+        driver.findElement(By.id("btn_salvar")).click();
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.className("alerta-msg"))));
 
+        String str = driver.findElement(By.cssSelector("span.alerta-msg")).getText();
 
-
-        Assert.assertTrue(true);
+        Assert.assertEquals(str,"Operação concluída com sucesso.");
 
     }
 
