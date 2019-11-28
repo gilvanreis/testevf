@@ -1,6 +1,7 @@
 package SuiteTeste.SuiteModuloLogin;
 
 import Core.BaseLoginTest;
+import Utils.GeraCpfCnpj;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -33,14 +34,18 @@ public class ClienteTest extends BaseLoginTest {
         String closeDropdownScript = "$('#"+fieldId+"').select2('close')";
         js.executeScript(closeDropdownScript, campo);
     }
+    GeraCpfCnpj teste = new GeraCpfCnpj();
+
     @Test
     public void IncluirCliente_ComDocumentoCpfValido_DeveriaIncluirSucesso() throws InterruptedException {
+        GeraCpfCnpj cpfCnpj = new GeraCpfCnpj();
+
         WebDriverWait wait = new WebDriverWait(driver, 10);
         driver.get("https://vfcli.varejofacil.com/cliente/cadastro?clearCache=true");
         driver.findElement(By.linkText("Incluir")).click();
         selectItemFromList("tipoPessoa","Física");
         driver.findElement(By.id("cpfCnpjPassaporte")).click();
-        driver.findElement(By.id("cpfCnpjPassaporte")).sendKeys(Keys.HOME + "10613683358" + Keys.TAB);
+        driver.findElement(By.id("cpfCnpjPassaporte")).sendKeys(Keys.HOME + cpfCnpj.cpf() + Keys.TAB);
         wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.className("ajaxLoadingStatusWithImage"))));
         driver.findElement(By.id("nome")).sendKeys("FICTICIO NAME");
         selectItemFromList("holding","GERAL");
@@ -48,7 +53,7 @@ public class ClienteTest extends BaseLoginTest {
         driver.findElement(By.id("numero")).sendKeys(Keys.HOME + "800");
         wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.className("ajaxLoadingStatusWithImage"))));
         driver.findElement(By.id("btn_salvar")).click();
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.className("alerta-msg"))));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("span.alerta-msg"))));
 
         String str = driver.findElement(By.cssSelector("span.alerta-msg")).getText();
 
