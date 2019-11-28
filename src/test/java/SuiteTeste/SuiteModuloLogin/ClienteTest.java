@@ -38,6 +38,11 @@ public class ClienteTest extends BaseLoginTest {
         selectItemFromList("tipoPessoa","Física");
         driver.findElement(By.id("cpfCnpjPassaporte")).click();
         driver.findElement(By.id("cpfCnpjPassaporte")).sendKeys(Keys.HOME + "00666811385");
+        driver.findElement(By.id("cpfCnpjPassaporte")).sendKeys(Keys.ENTER);
+        selectItemFromList("holding","GERAL");
+        driver.findElement(By.id("nome")).clear();
+        driver.findElement(By.id("nome")).click();
+        driver.findElement(By.id("nome")).sendKeys(Keys.HOME + "GILVAN REIS");
 
 
 
